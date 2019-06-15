@@ -18,7 +18,7 @@ namespace Maunovaha.CSharpMasterClass.S1.HelloWorld
             string name = "Stranger";
             Console.WriteLine($"Hello {name}!");
 
-            // Requires <Enter> to exti the program (only on Windows?)
+            // Requires <Enter> to exit the program (only on Windows?)
             Console.Read();
         }
     }
