@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Maunovaha.Section1.HelloWorld
+namespace Maunovaha.CSharpMasterClass.S1.HelloWorld
 {
-    class Program
+    internal class Program
     {
         public static void Main(string[] args)
         {
@@ -12,14 +12,13 @@ namespace Maunovaha.Section1.HelloWorld
             // Sets console background color
             Console.BackgroundColor = ConsoleColor.DarkGray;
 
-            // Sets the whole console window to use the defined colors 
-            // (fills the background as well)
-            Console.Clear();                                                                       
+            // Sets the whole console window (background) to use the defined colors
+            Console.Clear();
 
             string name = "Stranger";
             Console.WriteLine($"Hello {name}!");
 
-            // Requires <Enter> to exit the program (only on Windows)
+            // Requires <Enter> to exti the program (only on Windows?)
             Console.Read();
         }
     }
