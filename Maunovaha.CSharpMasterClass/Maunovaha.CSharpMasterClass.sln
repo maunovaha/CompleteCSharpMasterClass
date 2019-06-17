@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass.S2.DataTypes", "Maunovaha.CSharpMasterClass.S2.DataTypes\Maunovaha.CSharpMasterClass.S2.DataTypes.csproj", "{C395C376-BA61-4B6C-81E7-BC686AA91F72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Maunovaha.CSharpMasterClass.S2.DataTypesChallenge", "Maunovaha.CSharpMasterClass.S2.DataTypesChallenge\Maunovaha.CSharpMasterClass.S2.DataTypesChallenge.csproj", "{1FDA745C-1926-446E-A0DB-EA3A700CFF9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass.S2.DataTypesChallenge", "Maunovaha.CSharpMasterClass.S2.DataTypesChallenge\Maunovaha.CSharpMasterClass.S2.DataTypesChallenge.csproj", "{1FDA745C-1926-446E-A0DB-EA3A700CFF9F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass.S3.Methods", "Maunovaha.CSharpMasterClass.S3.Methods\Maunovaha.CSharpMasterClass.S3.Methods.csproj", "{119C566E-61B8-4541-AC16-50C615E67CDD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass.S3.MethodsChallenge", "Maunovaha.CSharpMasterClass.S3.MethodsChallenge\Maunovaha.CSharpMasterClass.S3.MethodsChallenge.csproj", "{E1D26941-4980-40B4-A9F9-816FFD13A87A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{1FDA745C-1926-446E-A0DB-EA3A700CFF9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FDA745C-1926-446E-A0DB-EA3A700CFF9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FDA745C-1926-446E-A0DB-EA3A700CFF9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{119C566E-61B8-4541-AC16-50C615E67CDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{119C566E-61B8-4541-AC16-50C615E67CDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{119C566E-61B8-4541-AC16-50C615E67CDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{119C566E-61B8-4541-AC16-50C615E67CDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1D26941-4980-40B4-A9F9-816FFD13A87A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1D26941-4980-40B4-A9F9-816FFD13A87A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1D26941-4980-40B4-A9F9-816FFD13A87A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1D26941-4980-40B4-A9F9-816FFD13A87A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -45,7 +45,7 @@ namespace Maunovaha.CSharpMasterClass.S2.DataTypesChallenge
             Console.WriteLine($"stringVal: {stringVal}"); // Outputs `stringVal: I control text`
             
             string yearAsText = "2019";
-            int year = Int32.Parse(yearAsText);
+            int year = Int32.Parse(yearAsText); // Using Convert.ToInt32(yearAsText); could also work?
 
             Console.WriteLine($"year: {year}"); // Outputs `year: 2019`
             Console.Read();
