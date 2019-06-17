@@ -10,6 +10,8 @@ namespace Maunovaha.CSharpMasterClass.S2.DataTypes
         private static readonly int age1 = 32;
         private static readonly int age2; // Defaults to `0` (not null)
 
+        // private const string Id = "abc123";
+
         public static void Main(string[] args)
         {
             //////////////////////////////////////////////////
@@ -125,6 +127,14 @@ namespace Maunovaha.CSharpMasterClass.S2.DataTypes
             {
                 Console.WriteLine($"parsedInt: {parsedInt}"); // Outputs `10`
             }
+
+            //////////////////////////////////////////////////
+            // Constants (tl;dr same ez shit as in every language)
+            //////////////////////////////////////////////////
+            
+            const double PI = 3.1415926;
+            // PI = 1.0; // Causes error, ofc
+            Console.WriteLine($"PI: {PI}"); // Outputs `3,1415926`
 
             // ...
             Console.Read();
