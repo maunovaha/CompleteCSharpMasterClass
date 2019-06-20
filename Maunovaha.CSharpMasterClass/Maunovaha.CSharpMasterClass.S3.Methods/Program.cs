@@ -50,7 +50,7 @@ namespace Maunovaha.CSharpMasterClass.S3.Methods
             // num2 = 10 - 10;
             // num2 = 10 / 10; -- Remember to cast of rest of the int is cut away
             // num2 = 10 * 10;
-            // num2 = 10 / 10;
+            // num2 = 10 % 10;
 
             bool lower = 1 < 2;
             Console.WriteLine("lower = {0}", lower); // Outputs `lower = True`
@@ -148,7 +148,7 @@ namespace Maunovaha.CSharpMasterClass.S3.Methods
         public static double Divide(int a, int b)
         {
             // This is important: If we try to divide two ints as e.g. 4 / 0 it would throw an
-            // DivideByZeroException; But because we use (double)b cast, the dividing a 
+            // DivideByZeroException; But because we use (double)b cast then dividing a 
             // floating -point value by zero doesn't throw an exception; it results in positive 
             // infinity, negative infinity, or not a number (NaN), according to the rules 
             // of IEEE 754 arithmetic.

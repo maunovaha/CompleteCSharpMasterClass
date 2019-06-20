@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass.S3.MethodsChallenge", "Maunovaha.CSharpMasterClass.S3.MethodsChallenge\Maunovaha.CSharpMasterClass.S3.MethodsChallenge.csproj", "{E1D26941-4980-40B4-A9F9-816FFD13A87A}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass.S4.Decisions", "Maunovaha.CSharpMasterClass.S4.Decisions\Maunovaha.CSharpMasterClass.S4.Decisions.csproj", "{D58016B2-DA3B-40B8-9E0C-21FCE6B51F3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass.S4.DecisionsChallenge1", "Maunovaha.CSharpMasterClass.S4.DecisionsChallenge1\Maunovaha.CSharpMasterClass.S4.DecisionsChallenge1.csproj", "{B00427F5-908F-4812-AC15-BCAD1D6713D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{E1D26941-4980-40B4-A9F9-816FFD13A87A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1D26941-4980-40B4-A9F9-816FFD13A87A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1D26941-4980-40B4-A9F9-816FFD13A87A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D58016B2-DA3B-40B8-9E0C-21FCE6B51F3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D58016B2-DA3B-40B8-9E0C-21FCE6B51F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D58016B2-DA3B-40B8-9E0C-21FCE6B51F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D58016B2-DA3B-40B8-9E0C-21FCE6B51F3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B00427F5-908F-4812-AC15-BCAD1D6713D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B00427F5-908F-4812-AC15-BCAD1D6713D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B00427F5-908F-4812-AC15-BCAD1D6713D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B00427F5-908F-4812-AC15-BCAD1D6713D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
