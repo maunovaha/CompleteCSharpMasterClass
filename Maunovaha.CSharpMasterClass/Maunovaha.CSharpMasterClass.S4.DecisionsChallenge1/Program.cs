@@ -76,7 +76,7 @@ namespace Maunovaha.CSharpMasterClass.S4.DecisionsChallenge1
 
         public class User : IEquatable<User>
         {
-            public string Username { get; private set; }
+            public string Username { get; private set; } // Using readonly could work as well?
             public string Password { get; private set; }
 
             public User(string username, string password)
