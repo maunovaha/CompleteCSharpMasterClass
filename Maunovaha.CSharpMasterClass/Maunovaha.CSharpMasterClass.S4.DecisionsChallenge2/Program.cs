@@ -36,6 +36,8 @@ namespace Maunovaha.CSharpMasterClass.S4.DecisionsChallenge2
 
             // The old high score of 3500 could not be broken and is still held by `Pekka`
             // -----------------------------
+
+            Console.Read();
         }
 
         private class Application

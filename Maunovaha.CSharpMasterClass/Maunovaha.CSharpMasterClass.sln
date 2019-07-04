@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass.S4.DecisionsChallenge2", "Maunovaha.CSharpMasterClass.S4.DecisionsChallenge2\Maunovaha.CSharpMasterClass.S4.DecisionsChallenge2.csproj", "{B9A03519-89DB-429C-9A34-5CEAD1E000CB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass.S5.Loops", "Maunovaha.CSharpMasterClass.S5.Loops\Maunovaha.CSharpMasterClass.S5.Loops.csproj", "{D25612AB-A8D7-44D4-924C-4C7ED515402B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Maunovaha.CSharpMasterClass.S5.LoopsChallenge", "Maunovaha.CSharpMasterClass.S5.LoopsChallenge\Maunovaha.CSharpMasterClass.S5.LoopsChallenge.csproj", "{FB7FDB54-8882-40B1-A338-78C80438E023}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +61,14 @@ Global
 		{B9A03519-89DB-429C-9A34-5CEAD1E000CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9A03519-89DB-429C-9A34-5CEAD1E000CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9A03519-89DB-429C-9A34-5CEAD1E000CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D25612AB-A8D7-44D4-924C-4C7ED515402B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D25612AB-A8D7-44D4-924C-4C7ED515402B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D25612AB-A8D7-44D4-924C-4C7ED515402B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D25612AB-A8D7-44D4-924C-4C7ED515402B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB7FDB54-8882-40B1-A338-78C80438E023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB7FDB54-8882-40B1-A338-78C80438E023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB7FDB54-8882-40B1-A338-78C80438E023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB7FDB54-8882-40B1-A338-78C80438E023}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -72,6 +72,19 @@ namespace Maunovaha.CSharpMasterClass.S4.Decisions
                     break;
             }
 
+            //////////////////////////////////
+            // Ternary operators (nothing new...)
+            //////////////////////////////////
+
+            int someVal = 10;
+
+            bool someBool = someVal == 10 ? true : false;
+            someBool = someVal == 10;
+            someBool = someVal < 10;
+
+            string someStr = someBool ? "yes" : "no";
+            someStr = someBool ? (someVal < 10 ? "jaa" : "joo") : "jee";
+
             Console.Read();
         }
     }
