@@ -7,6 +7,6 @@ For much better experience, I recommend buying the course yourself: https://www.
 ## Used software / environment
 
 - Windows 7
-- Microsoft Visual Studio Community 16
+- Microsoft Visual Studio Community 2019
 - Console App (.NET core) project(s)
 - C# Version 7.3
