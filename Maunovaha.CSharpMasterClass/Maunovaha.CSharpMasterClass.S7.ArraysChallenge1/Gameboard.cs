@@ -4,73 +4,121 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
 {
     internal class Gameboard
     {
-        private Slot[,] Grid { get; } = {
-            { new Slot('1'), new Slot('2'), new Slot('3') },
-            { new Slot('4'), new Slot('5'), new Slot('6') },
-            { new Slot('7'), new Slot('8'), new Slot('9') }
-        };
+        // Initially, I used two-dimensional array defined as `Slot[,] Grid` but since I want to
+        // receive complete row of columns - easily - switching to jagged array was a better choice.
+        public Slot[][] Grid { get; private set; }
+        public int RowCount => Grid.Length;
+        // This needs fixing later if we are going to have rows with different number of 
+        // columns, atm. this hard-coding doesn't matter.
+        public int ColumnCountPerRow => Grid[0].Length;
+        public int SlotCount => RowCount * ColumnCountPerRow;
+        public int FirstSlotId => 89;
+        public int LastSlotId => FirstSlotId + SlotCount - 1;
+        public int MaxSlotLength => LastSlotId.ToString().Length;
+
+        private int SlotPadding => 2;
+        private char SlotDivider => '|';
+        private char SlotSpace => ' ';
+        private char SlotLine => '_';
+
+        public Gameboard(int rows, int columns)
+        {
+            SetupGrid(rows, columns);
+        }
 
         public void Draw()
         {
-            DrawEmptyRow();
-            DrawChipRow(Grid[0, 0], Grid[0, 1], Grid[0, 2]);
-            DrawLineRow();
-
-            DrawEmptyRow();
-            DrawChipRow(Grid[1, 0], Grid[1, 1], Grid[1, 2]);
-            DrawLineRow();
-
-            DrawEmptyRow();
-            DrawChipRow(Grid[2, 0], Grid[2, 1], Grid[2, 2]);
-            DrawEmptyRow();
+            for (int row = 0; row < RowCount; row++)
+            {
+                DrawEmptyRow();
+                DrawSlotRow(Grid[row]);
+                DrawLineRow();
+            }
         }
 
-        public bool TryPlace(int slot, char chip)
+        public bool TryPlace(int slot, Chip chip)
         {
-            // TODO: Validate chip.. 0 - 9, or X or O (?)
-            // So it is bassed here based on direct user input?
-
             int row = SlotToRow(slot);
             int column = SlotToColumn(slot);
 
-            return Grid[row, column].TryPlace(chip);
+            Console.WriteLine("row: " + row + " column: " + column); // slot 90 => row 9, column 8.. what?
+
+            // return Grid[row][column].TryPlace(chip);
+
+            return true;
         }
 
-        private void DrawChipRow(Slot a, Slot b, Slot c)
+        public bool IsWithinGrid(int slot) => slot >= FirstSlotId && slot <= LastSlotId;
+
+        private void SetupGrid(int rows, int columns)
         {
-            Console.WriteLine("  {0}  |  {1}  |  {2}  ", a, b, c);
+            Grid = new Slot[rows][];
+
+            for (int row = 0, chip = FirstSlotId; row < RowCount; row++)
+            {
+                Grid[row] = new Slot[columns];
+
+                for (int column = 0; column < columns; column++)
+                {
+                    Grid[row][column] = new Slot(chip++);
+                }
+            }
         }
 
         private void DrawLineRow()
         {
-            Console.WriteLine("__{0}__|__{0}__|__{0}__", '_');
+            DrawRow(SlotLine);
         }
 
         private void DrawEmptyRow()
         {
-            Console.WriteLine("  {0}  |  {0}  |  {0}  ", ' ');
+            DrawRow(SlotSpace);
         }
 
-        private int SlotToRow(int slot)
+        private void DrawSlotRow(Slot[] row)
         {
-            // slot = 1; row = 0;
-            // slot = 2; row = 0;
-            // slot = 3; row = 0;
-            //
-            // slot = 4; row = 1;
-            // slot = 5; row = 1;
-            // slot = 6; row = 1;
-            //
-            // slot = 7; row = 2;
-            // slot = 8; row = 2;
-            // slot = 9; row = 2;
+            string slotFill = new string(SlotSpace, SlotPadding);
+            string line = "";
 
-            return 0;
+            for (int column = 0; column < row.Length; column++)
+            {
+                // Ugly, will be fixed..
+                string chip = row[column].Chip.ToString();
+                int chipLength = chip.Length;
+                string extraFill = new string(' ', MaxSlotLength - chipLength);
+
+                line += slotFill + extraFill + row[column] + slotFill;
+
+                if (column < row.Length - 1)
+                {
+                    line += SlotDivider;
+                }
+            }
+
+            Console.WriteLine(line);
         }
 
-        private int SlotToColumn(int slot)
+        private void DrawRow(char fill)
         {
-            return 0;
+            string slotContent = new string(fill, MaxSlotLength);
+            string slotFill = new string(fill, SlotPadding);
+            string line = "";
+
+            for (int column = 0; column < ColumnCountPerRow; column++)
+            {
+                line += slotFill + slotContent + slotFill;
+
+                if (column < ColumnCountPerRow - 1)
+                {
+                    line += SlotDivider;
+                }
+            }
+
+            Console.WriteLine(line);
         }
+
+        private int SlotToRow(int slot) => (slot - 1) / RowCount;
+
+        private int SlotToColumn(int slot) => (slot - 1) % ColumnCountPerRow;
     }
 }

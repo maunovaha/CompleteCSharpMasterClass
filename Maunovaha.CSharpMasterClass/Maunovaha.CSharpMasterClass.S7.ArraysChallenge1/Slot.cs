@@ -1,18 +1,20 @@
-﻿using System;
-namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
+﻿namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
 {
     internal class Slot
     {
-        public char Chip { get; set; }
+        public Chip Chip { get; set; }
+        private bool IsFree => Chip.IsNumber;
 
-        private bool IsFree => Chip >= '0' && Chip <= '9';
-
-        public Slot(char chip)
+        public Slot(string chip)
         {
-            Chip = chip;
+            Chip = new Chip(chip);
         }
 
-        public bool TryPlace(char chip)
+        public Slot(int chip) : this(chip.ToString())
+        {
+        }
+
+        public bool TryPlace(Chip chip)
         {
             if (IsFree)
             {

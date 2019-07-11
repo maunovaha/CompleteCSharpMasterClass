@@ -16,13 +16,16 @@
             //   4  |  X  |  6
             // _____|_____|_____
             //      |     |
-            //   O  |  8  |  9
+            //   X  |  8  |  9
             //      |     |
             //
             // Player 1 -> Choose a number between 1 - 9:
             //
             // Hence, the whole game should run at top left of the console window
             // and including simple error handling, win condition etc.
+            //
+            // As a bonus, the game will have three different difficulty modes: 
+            // easy, medium and hard (having e.g. 3x3, 6x6 and 9x9 grid).
 
             Game game = new Game();
             game.Run();

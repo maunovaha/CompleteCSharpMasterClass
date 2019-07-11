@@ -4,13 +4,10 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
 {
     internal class Player
     {
-        public string Name { get; private set; }
+        public string Name { get; }
+        public Chip Chip { get; }
 
-        private char Chip { get; set; }
-
-        // How to keep track of pelimerkki? X or O?
-
-        public Player(string name, char chip)
+        public Player(string name, Chip chip)
         {
             Name = name;
             Chip = chip;
@@ -18,15 +15,30 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
 
         public void Update(Gameboard gameBoard)
         {
-            // do while input valid (?)
-            // also, display error properly ...
+            bool chipPlaced = false;
 
-            Console.WriteLine("{0} -> Choose a number between 1 - 9: ", Name);
-            string jees = Console.ReadLine();
+            do
+            {
+                Console.Write("\n{0} -> Choose a number between {1} - {2}: ",
+                    Name,
+                    gameBoard.FirstSlotId,
+                    gameBoard.LastSlotId);
 
-            gameBoard.TryPlace(0, 'X');
+                if (int.TryParse(Console.ReadLine(), out int slot) && gameBoard.IsWithinGrid(slot))
+                {
+                    chipPlaced = gameBoard.TryPlace(slot, Chip);
 
-            // Read input(?)
+                    if (!chipPlaced)
+                    {
+                        Console.WriteLine("\n*** Error, slot is already taken!");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\n*** Error, your input was invalid!");
+                }
+            }
+            while (!chipPlaced);
         }
     }
 }
