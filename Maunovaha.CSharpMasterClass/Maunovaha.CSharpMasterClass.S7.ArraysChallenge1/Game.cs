@@ -91,10 +91,15 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
 
         private void DisplayGameOver(GameStatus gameStatus)
         {
+            if (gameStatus.IsRunning)
+            {
+                return;
+            }
+
             ClearScreen();
             Draw();
 
-            if (!gameStatus.IsRunning && gameStatus.Winner != null)
+            if (gameStatus.Winner != null)
             {
                 Console.WriteLine("\n*** Game over, {0} won! ***\n", gameStatus.Winner.Name);
             }

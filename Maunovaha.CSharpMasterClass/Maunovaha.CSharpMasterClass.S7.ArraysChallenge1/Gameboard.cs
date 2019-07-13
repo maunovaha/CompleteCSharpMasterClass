@@ -68,7 +68,15 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
             {
                 DrawEmptyRow();
                 DrawChipRow(Grid[row]);
-                DrawLineRow();
+
+                if (row != RowCount - 1)
+                {
+                    DrawLineRow();
+                }
+                else
+                {
+                    DrawEmptyRow();
+                }
             }
         }
 
