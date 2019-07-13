@@ -2,7 +2,7 @@
 
 namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
 {
-    internal class Chip : IEquatable<Chip>
+    internal class Chip : IEquatable<int>
     {
         public string Value { get; }
         public bool IsNumber => Value != "X" && Value != "O";
@@ -16,6 +16,6 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
 
         public override string ToString() => Value;
 
-        public bool Equals(Chip other) => other.Value == Value;
+        public bool Equals(int other) => other.ToString() == Value;
     }
 }

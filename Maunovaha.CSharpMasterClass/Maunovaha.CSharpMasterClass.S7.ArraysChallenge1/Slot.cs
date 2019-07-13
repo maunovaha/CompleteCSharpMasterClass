@@ -21,6 +21,7 @@
                 Chip = chip;
             }
 
+            // TODO: Check if below can work when we dont even implement IEquatable for it?
             return Chip.Equals(chip);
         }
 

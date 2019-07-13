@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
 {

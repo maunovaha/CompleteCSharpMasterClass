@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
 {
@@ -12,9 +13,10 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
         // columns, atm. this hard-coding doesn't matter.
         public int ColumnCountPerRow => Grid[0].Length;
         public int SlotCount => RowCount * ColumnCountPerRow;
-        public int FirstSlotId => 89;
+        public int FirstSlotId => 1;
         public int LastSlotId => FirstSlotId + SlotCount - 1;
         public int MaxSlotLength => LastSlotId.ToString().Length;
+        public int MaxSlotLengthWithPadding => MaxSlotLength + SlotPadding * 2;
 
         private int SlotPadding => 2;
         private char SlotDivider => '|';
@@ -28,24 +30,19 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
 
         public void Draw()
         {
-            for (int row = 0; row < RowCount; row++)
-            {
-                DrawEmptyRow();
-                DrawSlotRow(Grid[row]);
-                DrawLineRow();
-            }
+            DrawGrid();
         }
 
         public bool TryPlace(int slot, Chip chip)
         {
-            int row = SlotToRow(slot);
-            int column = SlotToColumn(slot);
+            (int row, int column) = SlotToRowAndColumn(slot);
+            bool reservedSlot = row == -1 && column == -1;
 
-            Console.WriteLine("row: " + row + " column: " + column); // slot 90 => row 9, column 8.. what?
-
-            // return Grid[row][column].TryPlace(chip);
-
-            return true;
+            if (reservedSlot)
+            {
+                return false;
+            }
+            return Grid[row][column].TryPlace(chip);
         }
 
         public bool IsWithinGrid(int slot) => slot >= FirstSlotId && slot <= LastSlotId;
@@ -65,9 +62,14 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
             }
         }
 
-        private void DrawLineRow()
+        private void DrawGrid()
         {
-            DrawRow(SlotLine);
+            for (int row = 0; row < RowCount; row++)
+            {
+                DrawEmptyRow();
+                DrawChipRow(Grid[row]);
+                DrawLineRow();
+            }
         }
 
         private void DrawEmptyRow()
@@ -75,50 +77,57 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
             DrawRow(SlotSpace);
         }
 
-        private void DrawSlotRow(Slot[] row)
+        private void DrawLineRow()
         {
-            string slotFill = new string(SlotSpace, SlotPadding);
-            string line = "";
+            DrawRow(SlotLine);
+        }
+
+        private void DrawChipRow(Slot[] row)
+        {
+            string slotPadding = new string(SlotSpace, SlotPadding);
+            string slotPaddingRight = slotPadding;
+            string slotRow = "";
 
             for (int column = 0; column < row.Length; column++)
             {
-                // Ugly, will be fixed..
-                string chip = row[column].Chip.ToString();
-                int chipLength = chip.Length;
-                string extraFill = new string(' ', MaxSlotLength - chipLength);
+                string slotValue = row[column].Chip.Value;
+                string slotValueMaxLengthDifference = new string(SlotSpace, MaxSlotLength - slotValue.Length);
+                string slotPaddingLeft = slotPadding + slotValueMaxLengthDifference;
 
-                line += slotFill + extraFill + row[column] + slotFill;
+                slotRow += slotPaddingLeft + slotValue + slotPaddingRight;
 
                 if (column < row.Length - 1)
                 {
-                    line += SlotDivider;
+                    slotRow += SlotDivider;
                 }
             }
 
-            Console.WriteLine(line);
+            Console.WriteLine(slotRow);
         }
 
-        private void DrawRow(char fill)
+        private void DrawRow(char slotFill)
         {
-            string slotContent = new string(fill, MaxSlotLength);
-            string slotFill = new string(fill, SlotPadding);
-            string line = "";
+            string slotContent = new string(slotFill, MaxSlotLengthWithPadding) + SlotDivider;
+            string slotRow = string.Concat(Enumerable.Repeat(slotContent, ColumnCountPerRow));
 
-            for (int column = 0; column < ColumnCountPerRow; column++)
-            {
-                line += slotFill + slotContent + slotFill;
-
-                if (column < ColumnCountPerRow - 1)
-                {
-                    line += SlotDivider;
-                }
-            }
-
-            Console.WriteLine(line);
+            Console.WriteLine(RemoveLastMark(slotRow));
         }
 
-        private int SlotToRow(int slot) => (slot - 1) / RowCount;
+        private string RemoveLastMark(string value) => value.Remove(value.Length - 1);
 
-        private int SlotToColumn(int slot) => (slot - 1) % ColumnCountPerRow;
+        private (int row, int column) SlotToRowAndColumn(int slot)
+        {
+            for (int row = 0; row < RowCount; row++)
+            {
+                for (int column = 0; column < Grid[row].Length; column++)
+                {
+                    if (Grid[row][column].Chip.Equals(slot))
+                    {
+                        return (row, column);
+                    }
+                }
+            }
+            return (-1, -1); // Bad design, but works for now
+        }
     }
 }
