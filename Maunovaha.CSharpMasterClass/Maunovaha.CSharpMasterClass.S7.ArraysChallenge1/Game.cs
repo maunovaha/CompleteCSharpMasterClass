@@ -134,10 +134,10 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
             return string.Concat(Enumerable.Repeat(player.Chip.Value, count));
         }
 
-        private string GetPattern(List<Slot> row, int startIndex, int count)
-        {
-            return string.Concat(row.GetRange(startIndex, count).Select(slot => slot.Chip.Value));
-        }
+        // private string GetPattern(List<Slot> row, int startIndex, int count)
+        // {
+        //     return string.Concat(row.GetRange(startIndex, count).Select(slot => slot.Chip.Value));
+        // }
 
         private (bool gameOver, Player winner) CheckGameOver(Player player)
         {
