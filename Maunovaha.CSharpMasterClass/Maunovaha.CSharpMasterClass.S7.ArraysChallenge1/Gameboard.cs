@@ -17,7 +17,6 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
         public int LastSlotId => FirstSlotId + SlotCount - 1;
         public int MaxSlotLength => LastSlotId.ToString().Length;
         public int MaxSlotLengthWithPadding => MaxSlotLength + SlotPadding * 2;
-
         private int SlotPadding => 2;
         private char SlotDivider => '|';
         private char SlotSpace => ' ';
@@ -45,7 +44,36 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
             return Grid[row][column].TryPlace(chip);
         }
 
+        public string Get(int row, int column) => Grid[row][column].Chip.Value;
+
+        // public string GetValue(int row, int column)
+        // {
+        //     try
+        //     {
+        //         return Grid[row][column].Chip.Value;
+        //     }
+        //     catch (IndexOutOfRangeException)
+        //     {
+        //         return "";
+        //     }
+        // }
+
         public bool IsWithinGrid(int slot) => slot >= FirstSlotId && slot <= LastSlotId;
+
+        public bool IsFull()
+        {
+            for (int row = 0; row < RowCount; row++)
+            {
+                for (int column = 0; column < Grid[row].Length; column++)
+                {
+                    if (Grid[row][column].IsFree)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
 
         private void SetupGrid(int rows, int columns)
         {

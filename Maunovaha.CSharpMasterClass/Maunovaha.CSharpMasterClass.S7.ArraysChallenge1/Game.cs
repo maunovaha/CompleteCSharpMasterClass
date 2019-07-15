@@ -10,7 +10,7 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
         private List<Player> Players { get; set; } = new List<Player>();
         private byte CurrentPlayerIndex { get; set; }
         private Player CurrentPlayer => Players.ElementAt(CurrentPlayerIndex);
-        private int ContiguousChipCount => 3;
+        private byte ContiguousChipCount => 3;
 
         public void Run()
         {
@@ -18,8 +18,8 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
             SetupPlayers();
             SetupGameboard(SelectDifficulty());
 
-            GameStatus gameStatus = Loop();
-            DisplayGameOver(gameStatus);
+            Player winner = Loop();
+            DisplayGameOver(winner);
 
             Console.Read();
         }
@@ -69,39 +69,34 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
             return SelectDifficulty();
         }
 
-        private GameStatus Loop()
+        private Player Loop()
         {
-            GameStatus gameStatus = new GameStatus();
-
             do
             {
                 ClearScreen();
                 Draw();
                 Update();
 
-                if (!IsGameOver(CurrentPlayer, ref gameStatus))
-                {
-                    ChangeTurn();
-                }
-            }
-            while (gameStatus.IsRunning);
+                (bool gameOver, Player winner) = CheckGameOver(CurrentPlayer);
 
-            return gameStatus;
+                if (gameOver)
+                {
+                    return winner;
+                }
+
+                ChangeTurn();
+            }
+            while (true);
         }
 
-        private void DisplayGameOver(GameStatus gameStatus)
+        private void DisplayGameOver(Player winner)
         {
-            if (gameStatus.IsRunning)
-            {
-                return;
-            }
-
             ClearScreen();
             Draw();
 
-            if (gameStatus.Winner != null)
+            if (winner != null)
             {
-                Console.WriteLine("\n*** Game over, {0} won! ***\n", gameStatus.Winner.Name);
+                Console.WriteLine("\n*** Game over, {0} won! ***\n", winner.Name);
             }
             else
             {
@@ -144,42 +139,105 @@ namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
             return string.Concat(row.GetRange(startIndex, count).Select(slot => slot.Chip.Value));
         }
 
-        private bool IsGameOver(Player player, ref GameStatus gameStatus)
+        private (bool gameOver, Player winner) CheckGameOver(Player player)
         {
-            string winningPattern = GetPattern(player, ContiguousChipCount);
+            string pattern = GetPattern(player, ContiguousChipCount);
 
-            // Checking horizontal line matches
+            if (IsHorizontalMatch(pattern) 
+                || IsVerticalMatch(pattern)
+                || IsDiagonalMatchFromLeftToRight(pattern) 
+                || IsDiagonalMatchFromRightToLeft(pattern))
+            {
+                return (true, player);
+            }
+            else if (IsDraw())
+            {
+                return (true, null);
+            }
+             
+            return (false, null);
+        }
+
+        private bool IsDraw() => Gameboard.IsFull();
+
+        private bool IsHorizontalMatch(string winningPattern)
+        {
             for (int row = 0; row < Gameboard.RowCount; row++)
             {
                 for (int column = 0; column < Gameboard.Grid[row].Length - (ContiguousChipCount - 1); column++)
                 {
-                    string siblings = GetPattern(Gameboard.Grid[row].ToList(), column, ContiguousChipCount);
+                    string chip1 = Gameboard.Get(row, column);
+                    string chip2 = Gameboard.Get(row, column + 1);
+                    string chip3 = Gameboard.Get(row, column + 2);
+                    string currentPattern = chip1 + chip2 + chip3;
 
-                    if (winningPattern == siblings)
+                    if (currentPattern == winningPattern)
                     {
-                        gameStatus.SetGameOver(CurrentPlayer);
                         return true;
                     }
                 }
             }
-
-            // TODO: Checking vertical line matches
-
-            // TODO: Checking draw
-
             return false;
         }
 
-        private class GameStatus
+        private bool IsVerticalMatch(string winningPattern)
         {
-            public bool IsRunning { get; private set; } = true;
-            public Player Winner { get; private set; }
-
-            public void SetGameOver(Player player = null)
+            for (int row = 0; row < Gameboard.RowCount - (ContiguousChipCount - 1); row++)
             {
-                IsRunning = false;
-                Winner = player;
+                for (int column = 0; column < Gameboard.Grid[row].Length; column++)
+                {
+                    string chip1 = Gameboard.Get(row, column);
+                    string chip2 = Gameboard.Get(row + 1, column);
+                    string chip3 = Gameboard.Get(row + 2, column);
+                    string currentPattern = chip1 + chip2 + chip3;
+
+                    if (currentPattern == winningPattern)
+                    {
+                        return true;
+                    }
+                }
             }
+            return false;
+        }
+
+        private bool IsDiagonalMatchFromLeftToRight(string winningPattern)
+        {
+            for (int row = 0; row < Gameboard.RowCount - (ContiguousChipCount - 1); row++)
+            {
+                for (int column = 0; column < Gameboard.Grid[row].Length - (ContiguousChipCount - 1); column++)
+                {
+                    string chip1 = Gameboard.Get(row, column);
+                    string chip2 = Gameboard.Get(row + 1, column + 1);
+                    string chip3 = Gameboard.Get(row + 2, column + 2);
+                    string currentPattern = chip1 + chip2 + chip3;
+
+                    if (currentPattern == winningPattern)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private bool IsDiagonalMatchFromRightToLeft(string winningPattern)
+        {
+            for (int row = 0; row < Gameboard.RowCount - (ContiguousChipCount - 1); row++)
+            {
+                for (int column = Gameboard.Grid[row].Length - 1; column > 1; column--)
+                {
+                    string chip1 = Gameboard.Get(row, column);
+                    string chip2 = Gameboard.Get(row + 1, column - 1);
+                    string chip3 = Gameboard.Get(row + 2, column - 2);
+                    string currentPattern = chip1 + chip2 + chip3;
+
+                    if (currentPattern == winningPattern)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

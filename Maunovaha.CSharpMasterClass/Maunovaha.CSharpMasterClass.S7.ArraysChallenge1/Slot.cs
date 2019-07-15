@@ -1,9 +1,11 @@
-﻿namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
+﻿using System;
+
+namespace Maunovaha.CSharpMasterClass.S7.ArraysChallenge1
 {
     internal class Slot
     {
         public Chip Chip { get; set; }
-        private bool IsFree => Chip.IsNumber;
+        public bool IsFree => Chip.IsNumber;
 
         public Slot(string chip)
         {
@@ -21,7 +23,8 @@
                 Chip = chip;
             }
 
-            // TODO: Check if below can work when we dont even implement IEquatable for it?
+            // This comparison works without defining our own Equals method because
+            // we do `Chip = chip;` above which means that we are comparing object instances.
             return Chip.Equals(chip);
         }
 
