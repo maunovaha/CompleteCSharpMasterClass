@@ -128,7 +128,7 @@ namespace Maunovaha.CSharpMasterClass.S7.Arrays
             Console.WriteLine("2 * 2 = {0}", multiplied[0]); // Outputs `2 * 2 = 4`
 
             // This is weird, but apparently arrays works like references, so the MultiplyByTwo
-            // method actually modifies the real array value. So the above will output 4 as well(!)
+            // method actually modifies the real array value. So the below will output 4 as well(!)
             Console.WriteLine("values[0] = {0}", values[0]); // Outputs `values[0] = 4`
 
             // Modifying array numbers directly will work, so we can declare void method and it works the 
