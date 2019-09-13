@@ -1,4 +1,4 @@
-# CompleteCSharpMasterClass
+# Complete C# Masterclass - Exercise solutions
 
 This project is developed based on the course "Complete C# Masterclass". Hence, most of the code you see in this repository contains my personal notes and just trying out things to learn the language a bit better (this is how I roll).
 
